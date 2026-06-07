@@ -29,7 +29,7 @@ function App() {
         <Route path="/register" element={<Register />} />
         <Route path="/nosotros" element={<Nosotros />} />
         <Route path="/menu-cliente" element={<ServicesSection />} />
-        <Route path="/menu-emprendedor" element={<Emprendedor />} />
+        <Route path="/menu-emprendedor" element={<ServicesSection />} />
       </Routes>
     </Router>
   );
