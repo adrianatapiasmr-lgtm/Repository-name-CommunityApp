@@ -2,7 +2,7 @@ import "./App.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Login from "./components/Login";
 import Register from "./components/Register";
-
+import Emprendedor from "./components/menuEmprendedor/Emprendedor";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
 import { useEffect } from "react";
@@ -29,6 +29,7 @@ function App() {
         <Route path="/register" element={<Register />} />
         <Route path="/nosotros" element={<Nosotros />} />
         <Route path="/menu-cliente" element={<ServicesSection />} />
+        <Route path="/menu-emprendedor" element={<Emprendedor />} />
       </Routes>
     </Router>
   );
