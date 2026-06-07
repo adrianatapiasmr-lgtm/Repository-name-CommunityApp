@@ -6,8 +6,6 @@ function Login() {
   const [user, setUser] = useState("");
   const [password, setPassword] = useState("");
 
-  const [menuOpen, setMenuOpen] = useState(false);
-
   const handleLogin = (e) => {
     e.preventDefault();
 
