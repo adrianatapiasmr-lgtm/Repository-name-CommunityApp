@@ -9,7 +9,7 @@ import { useEffect } from "react";
 import ServicesSection from "./components/menuClient/client";
 import Home from "./components/Home";
 import Nosotros from "./components/Nosotros";
-import ForgotPassword from "./components/ForgotPassword";
+import ForgotPassword from "./components/ForgotPassword/ForgotPassword.js";
 
 function App() {
   useEffect(() => {
