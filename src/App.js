@@ -31,6 +31,7 @@ function App() {
         <Route path="/nosotros" element={<Nosotros />} />
         <Route path="/menu-cliente" element={<ServicesSection />} />
         <Route path="/menu-emprendedor" element={<ServicesSection />} />
+        <Route path="/forgot-password" element={<ForgotPassword />} />
       </Routes>
     </Router>
   );
