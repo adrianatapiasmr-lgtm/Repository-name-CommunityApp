@@ -35,7 +35,6 @@ function ServicesSection({ onLogout }) {
     navigate("/login", { replace: true });
   };
 
-  const [menuOpen, setMenuOpen] = useState(false);
   // Client.js (return completo)
   return (
     <div className="client-page">
