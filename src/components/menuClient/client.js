@@ -6,7 +6,7 @@ import producto1 from "../../assets/img/producto1.png"
 import producto2 from "../../assets/img/producto2.png"
 import producto3 from "../../assets/img/producto3.png"
 import producto4 from "../../assets/img/producto4.png"
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const servicios = [
   { id: 1, categoria: "Confecciones", nombre: "Confecciones Ruth", ubicacion: "Bogotá D.C", img: producto1 },
@@ -17,8 +17,9 @@ const servicios = [
 
 const categorias = ["Hogar", "Tecnicos", "Salud", "Educacion"];
 
-function ServicesSection() {
+function ServicesSection({ onLogout }) {
   const navigate = useNavigate();
+
   const [search, setSearch] = useState("");
   const [filter, setFilter] = useState("");
 
@@ -28,13 +29,13 @@ function ServicesSection() {
       s.nombre.toLowerCase().includes(search.toLowerCase())
     );
   });
-  const handleLogout = () => {
-    localStorage.removeItem("currentUser");
 
-    navigate("/");
+  const handleLogout = () => {
+    onLogout();
+    navigate("/login", { replace: true });
   };
 
-  
+  const [menuOpen, setMenuOpen] = useState(false);
   // Client.js (return completo)
   return (
     <div className="client-page">
@@ -45,12 +46,18 @@ function ServicesSection() {
           </div>
   
           <nav className="nav-menu">
-            <a href="/home" className="btn-menu">Perfil</a>
-            <a href="/login" className="btn-menu">Mis servicios</a>
-            <button onClick={handleLogout} className="btn-logout">
-            Cerrar sesión
-          </button>
-          </nav>
+              <Link to="/home" className="btn-menu">
+              Perfil
+              </Link>
+              
+              <Link to="/menu-cliente" className="btn-menu">
+              Mis servicios
+              </Link>
+              
+              <button onClick={handleLogout} className="btn-logout">
+                Cerrar sesión
+                </button>
+             </nav>
   
         </div>
       </header>

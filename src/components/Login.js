@@ -1,17 +1,23 @@
 import { useState } from "react";
 import logoIcon from "../assets/img/2.png"
 import { Link, useNavigate } from "react-router-dom";
-function Login() {
+
+
+function Login({onLoginSuccess  }) {
   const navigate = useNavigate() 
   const [user, setUser] = useState("");
   const [password, setPassword] = useState("");
+
+  const [menuOpen, setMenuOpen] = useState(false);
 
   const handleLogin = (e) => {
     e.preventDefault();
 
     const users = JSON.parse(localStorage.getItem("users")) || [];
     const foundUser = users.find(
-      u => u.email === user && u.password === password
+      u =>
+        u.email?.trim().toLowerCase() === user.trim().toLowerCase() &&
+        u.password === password.trim()
     );
 
     if (!foundUser) {
@@ -21,11 +27,16 @@ function Login() {
 
     localStorage.setItem("currentUser", JSON.stringify(foundUser));
 
-    // Redirigir usando React Router
+    if (onLoginSuccess ) {
+      onLoginSuccess (foundUser);
+    }
+
     if (foundUser.accountType === "cliente") {
-      navigate("/menu-cliente");
+      navigate("/menu-cliente", { replace: true });
     } else if (foundUser.accountType === "emprendedor") {
-      navigate("/menu-emprendedor");
+      navigate("/menu-emprendedor", { replace: true });
+    } else {
+      alert("Tipo de cuenta no válido");
     }
   };
 
@@ -39,10 +50,10 @@ function Login() {
           </div>
 
           <nav className="nav-menu">
-            <a href="/home" className="btn-menu">Home</a>
-            <a href="/nosotros" className="btn-menu">Nosotros</a>
-            <a href="/login" className="btn-menu">Iniciar sesión</a>
-            <a href="/register" className="btn-menu">Registrar</a>
+            <Link to="/home" className="btn-menu">Home</Link>
+            <Link to="/nosotros" className="btn-menu">Nosotros</Link>
+            <Link to="/login" className="btn-menu">Iniciar sesión</Link>
+            <Link to="/register" className="btn-menu">Registrar</Link>
           </nav>
 
         </div>
@@ -79,7 +90,13 @@ function Login() {
                 />
               </div>
               {user.length > 0 && (
-                <button className="clear-input-btn" onClick={() => setUser("")}>×</button>
+                <button
+                  type="button"
+                  className="clear-input-btn"
+                  onClick={() => setUser("")}
+                >
+                  ×
+                </button>
               )}
 
               <div className="mb-3">
@@ -97,7 +114,13 @@ function Login() {
                 />
               </div>
               {password.length > 0 && (
-                <button className="clear-input-btn" onClick={() => setPassword("")}>×</button>
+                <button
+                  type="button"
+                  className="clear-input-btn"
+                  onClick={() => setPassword("")}
+                >
+                  ×
+                </button>
               )}
 
               <div className="d-grid mb-2">
@@ -108,7 +131,7 @@ function Login() {
             </form>
 
             <div className="text-center mb-2">
-              <Link className="small text-decoration-none text-brand" to="/forgot-password">
+              <Link className="small text-decoration-none text-brand" to="/olvido-contraseña">
                 Olvidé mi contraseña
               </Link>
             </div>

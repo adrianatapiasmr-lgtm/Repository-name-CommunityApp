@@ -1,16 +1,16 @@
 import React from "react";
 import logo from "../../assets/img/2.png";
 import header from "../../assets/img/header.png";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
-function Emprendedor() {
+function Emprendedor({ onLogout }) {
   const navigate = useNavigate();
 
-  const handleLogout = () => {
-    localStorage.removeItem("currentUser");
-    navigate("/");
-  };
 
+  const handleLogout = () => {
+    onLogout();
+    navigate("/login", { replace: true });
+  };
   return (
     <div className="client-page">
       <header className="site-header">
@@ -20,8 +20,8 @@ function Emprendedor() {
           </div>
 
           <nav className="nav-menu">
-            <a href="/home" className="btn-menu">Perfil</a>
-            <a href="/" className="btn-menu">Mis Servicios</a>
+            <Link to="/home" className="btn-menu">Perfil</Link>
+            <Link to="/" className="btn-menu">Mis Servicios</Link>
             <button onClick={handleLogout} className="btn-logout">
               Cerrar sesión
             </button>
