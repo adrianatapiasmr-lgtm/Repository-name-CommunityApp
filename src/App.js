@@ -4,7 +4,7 @@ import Login from "./components/Login";
 import Register from "./components/Register";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
-import { useEffect } from "react";
+// eliminar completamente esta líneaimport { useEffect } from "react";
 import ServicesSection from "./components/menuClient/client";
 import Home from "./components/Home";
 import Nosotros from "./components/Nosotros";
